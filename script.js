@@ -59,27 +59,24 @@ const handleEscape = (e) => {
 
 // Creat and show the new list
 
-const subimitBtn = () => {
-  const name = document.getElementById('name');
-  const myHtml = `<div class="order" data-dish="romazava" data-size="large" data-amount="2">
-    <span class="title">
-      my name
-    </span>
-    <button class="details">Details</button>
-    <button class="served">Delete order</button>
-    </div>
-  </div>`;
-  const orderList = document.querySelector('.order-list');
-  orderList.insertAdjacentHTML('beforeend', myHtml);
-  modalOuter.style.display = "none";
-};
-
 // Listen the submit event
 
 window.addEventListener('click', (event) => {
   event.preventDefault();
   if (event.target.matches('button.submit-order')) {
-    subimitBtn();
+    const name = document.getElementById('name');
+    const myHtml = `<div class="order" data-dish="romazava" data-size="large" data-amount="2">
+      <span class="title">
+        ${name.value}
+      </span>
+      <button class="details">Details</button>
+      <button class="served">Delete order</button>
+      </div>
+    </div>`;
+    event.target = myHtml;
+    const orderList = document.querySelector('.order-list');
+    orderList.insertAdjacentHTML('beforeend', myHtml);
+    modalOuter.style.display = "none";
   };
 });
 
@@ -89,7 +86,6 @@ const handleDelete = (e) => {
 	if (e.target.classList.contains('served')) {
 		const deleteBtn = e.target;
     deleteBtn.closest('.order').remove();
-
 	}
 };
 
