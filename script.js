@@ -59,7 +59,6 @@ const handleEscape = (e) => {
   };
 };
 
-
 // Listen the submit event
 
 window.addEventListener('submit', (event) => {
@@ -83,27 +82,27 @@ window.addEventListener('submit', (event) => {
     // const formElement = document.querySelector('form');
     // formElement.reset();
 
-  }
+  };
 });
 
 // This shows the details of the list order
 
- window.addEventListener('click', (event) => {
-  event.preventDefault();
-  if(event.target.matches('button.details')) {
-    let form = event.target;
-    let name = form.name.value;
-    let selectDish = form.dish.value;
-    let selectSize = form.size.value;
-    let selectAmount = form.amount.value;
+//  window.addEventListener('click', (event) => {
+//   event.preventDefault();
+//   if(event.target.matches('button.details')) {
+//     let form = event.target;
+//     let name = form.name.value;
+//     let selectDish = form.dish.value;
+//     let selectSize = form.size.value;
+//     let selectAmount = form.amount.value;
 
-  modalInner.innerHTML = `
-      <h2>${name}</h2>
-      <p>Order: ${selectDish} ${selectSize} ${selectAmount}</p>
-    `
-  modalOuter.classList.add('open');
-  };
-});
+//   modalInner.innerHTML = `
+//       <h2>${name}</h2>
+//       <p>Order: ${selectDish} ${selectSize} ${selectAmount}</p>
+//     `
+//   modalOuter.classList.add('open');
+//   };
+// });
 
 // Delete the list
 
@@ -113,7 +112,6 @@ const handleDelete = (e) => {
     deleteBtn.closest('.order').remove();
 	}
 };
-
 
 // Listen the events
 
