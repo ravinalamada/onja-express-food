@@ -4,11 +4,11 @@ const modalInner = document.querySelector('.modal-inner');
 const modalOuter = document.querySelector('.modal-outer');
 const addOrderBtn = document.querySelector('.add-order');
 const sel = document.querySelector('.select-form');
-const formElement = document.querySelector('form');
 const detailBtn= document.querySelector('.details')
 const deleteBtn = document.querySelector('.served');
-// Show the form
 
+
+// Show the form
 
 const openModal = () => {
 
@@ -42,7 +42,9 @@ const openModal = () => {
     </form>
   `
   modalOuter.classList.add('open');
-}
+};
+
+// Close the modal when the user click the outterModal
 
 const handleClick = event => {
   const isOutside = !event.target.closest('.modal-inner');
@@ -57,13 +59,14 @@ const handleEscape = (e) => {
   };
 };
 
-// Creat and show the new list
 
 // Listen the submit event
 
-window.addEventListener('click', (event) => {
+window.addEventListener('submit', (event) => {
   event.preventDefault();
-  if (event.target.matches('button.submit-order')) {
+  if (event.target.matches('form')) {
+
+// Creat and show the new list
     const name = document.getElementById('name');
     const myHtml = `<div class="order" data-dish="romazava" data-size="large" data-amount="2">
       <span class="title">
@@ -77,6 +80,28 @@ window.addEventListener('click', (event) => {
     const orderList = document.querySelector('.order-list');
     orderList.insertAdjacentHTML('beforeend', myHtml);
     modalOuter.style.display = "none";
+    // const formElement = document.querySelector('form');
+    // formElement.reset();
+
+  }
+});
+
+// This shows the details of the list order
+
+ window.addEventListener('click', (event) => {
+  event.preventDefault();
+  if(event.target.matches('button.details')) {
+    let form = event.target;
+    let name = form.name.value;
+    let selectDish = form.dish.value;
+    let selectSize = form.size.value;
+    let selectAmount = form.amount.value;
+
+  modalInner.innerHTML = `
+      <h2>${name}</h2>
+      <p>Order: ${selectDish} ${selectSize} ${selectAmount}</p>
+    `
+  modalOuter.classList.add('open');
   };
 });
 
@@ -89,32 +114,6 @@ const handleDelete = (e) => {
 	}
 };
 
-// var sel = document.querySelector('.select-form');
-// var el = document.getElementById('display');
-
-//   const getSelectedOption = (sel) => {
-//         var opt;
-//         for ( var i = 0, len = sel.options.length; i < len; i++ ) {
-//             opt = sel.options[i];
-//             if ( opt.selected === true ) {
-//               sel.textContent = opt.selected;
-//             }
-//         }
-//         return opt;
-//     };
-
-// const getRadioCheckedValue = (radio_name) => {
-//   var oRadio = document.forms[0].elements[radio_name];
-
-//    for(var i = 0; i < oRadio.length; i++)
-//    {
-//       if(oRadio[i].checked)
-//       {
-//          return oRadio[i].value;
-//       }
-//    }
-//    return '';
-// };
 
 // Listen the events
 
@@ -122,5 +121,3 @@ window.addEventListener('keydown', handleEscape);
 modalOuter.addEventListener('click', handleClick);
 addOrderBtn.addEventListener('click', openModal);
 document.addEventListener('click', handleDelete);
-// detailBtn.addEventListener('submit', getSelectedOption);
-// detailBtn.addEventListener('submit', getRadioCheckedValue);
