@@ -81,28 +81,33 @@ window.addEventListener('submit', (event) => {
     modalOuter.style.display = "none";
     // const formElement = document.querySelector('form');
     // formElement.reset();
-
+  modalOuter.classList.remove('open');
   };
 });
 
 // This shows the details of the list order
 
-//  window.addEventListener('click', (event) => {
-//   event.preventDefault();
-//   if(event.target.matches('button.details')) {
-//     let form = event.target;
-//     let name = form.name.value;
-//     let selectDish = form.dish.value;
-//     let selectSize = form.size.value;
-//     let selectAmount = form.amount.value;
+const detailForm = () => {
+  const button = event.target;
+  const form = button.closest('.order');
+  const name = form.querySelector('.title').textContent;
+  const selectDish = form.dataset.dish;
+  const selectSize = form.dataset.size;
+  const selectAmount = form.dataset.amount;
 
-//   modalInner.innerHTML = `
-//       <h2>${name}</h2>
-//       <p>Order: ${selectDish} ${selectSize} ${selectAmount}</p>
-//     `
-//   modalOuter.classList.add('open');
-//   };
-// });
+modalInner.innerHTML = `
+    <h2>${name}</h2>
+    <p>Order: ${selectDish} ${selectSize} ${selectAmount}</p>
+  `
+modalOuter.classList.add('open');
+}
+
+ window.addEventListener('click', (event) => {
+   if(event.target.matches('.details')) {
+    //  console.log(event.target);
+    detailForm();
+  };
+});
 
 // Delete the list
 
