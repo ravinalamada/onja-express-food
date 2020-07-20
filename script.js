@@ -63,7 +63,7 @@ const subimitBtn = () => {
   const name = document.getElementById('name');
   const myHtml = `<div class="order" data-dish="romazava" data-size="large" data-amount="2">
     <span class="title">
-      ${name.value}
+      my name
     </span>
     <button class="details">Details</button>
     <button class="served">Delete order</button>
